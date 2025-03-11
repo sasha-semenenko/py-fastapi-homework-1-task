@@ -7,6 +7,7 @@ from src.database import get_db, MovieModel
 
 router = APIRouter()
 
+
 @router.get("/movies/", response_model=MovieListResponseSchema)
 async def get_movies(
         page: int = Query(1, ge=1, description="Current page where you are"),
@@ -24,7 +25,6 @@ async def get_movies(
 
     if not movies or (page > total_pages):
         raise HTTPException(status_code=404, detail="No movies found.")
-
 
     return {
         "movies": movies,
